@@ -9,12 +9,12 @@
 .wrapper {
 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-content: flex-end;
     width: 100vw;
     height: 100vh;
-    background-color: red;
+    background-color: rgb(0, 17, 255);
     overflow: hidden;
     box-sizing: border-box;
     margin: 0;
@@ -23,19 +23,27 @@
 
 }
 
+/*header------*/
+
+header {
+    width: 100%;
+    
+}
+
 /*input----*/
 
 .drop-in { 
 
     align-self: center;
     border-bottom: 10px solid white;
-    background-color: blue;
     box-sizing: border-box;
     min-width: 345px;
     min-height: 200px;
     margin: 10px;
     
 }
+
+/*teclado----*/
 
 .container {
 
@@ -48,7 +56,7 @@
     box-sizing: border-box;
     width: 100%;
     height: 40%;
-    padding-bottom: 10px;
+
 }
 
 .number {
@@ -61,9 +69,17 @@
     font-size: 2em;
     width: 100%;
     height: 100%;
-    background-color: green;
     border-bottom: 5px solid white ;
 
+}
+
+.name {
+
+    color: white;
+    font-family: helvetica;
+    font-size: 50px;
+    line-height: 40px;
+    padding: 15px;
 }
 
 .down {
