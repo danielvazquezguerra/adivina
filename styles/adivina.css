@@ -9,24 +9,28 @@
 .wrapper {
 
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: red;
-    justify-content: center;
-    align-items: flex-end;
     overflow: hidden;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 
 
 }
 
 .container {
 
-    width: 300px;
-    height: 200px;
-    border: 3px solid white;
+    width: 90%;
+    height: 45%;
+    border: 10px solid white;
     box-sizing: border-box;
     margin-bottom: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
 
 }
