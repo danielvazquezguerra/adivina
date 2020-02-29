@@ -9,9 +9,9 @@
 .wrapper {
 
     display: flex;
-    flex-flow: wrap;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-content: flex-end;
     width: 100vw;
     height: 100vh;
     background-color: red;
@@ -25,12 +25,12 @@
 
 .container {
 
-    width: 90%;
-    height: 45%;
+    align-self: center;
     border: 10px solid white;
     box-sizing: border-box;
-    margin-bottom: 5px;
-    margin-left: 2%;
-    margin-right: 2%;
+    min-width: 345px;
+    min-height: 345px;
+    margin: 10px;
+    
 
 }
