@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!---styles---->
+
+ 
+
+    <!---styles---->
 
     <link rel="stylesheet" href="./styles/jquery-ui.structure.css">
-    <link rel="stylesheet" href="./styles/adivina.css">
-
-    <!---scripts-->
+    <link rel="stylesheet" href="./styles/adivina.css">    
+    
+    
     <script src="./scripts/jquery-3.4.1.js"></script>
     <script src="./scripts/jquery-ui.js"></script>
-    <script src="./scripts/calcudelator.js"></script>
-
     
+
     <title>Adivina con Drag and Drop.</title>
-
-
-    
 
 </head>
 <body>
@@ -29,63 +28,30 @@
             <h1 class="name">the<br> calcu-<br>delator.</h1>
         </header>
 
-        <section class="drop-in">
-
+        <section class="screen">
+            <input type="text" id="inputscreen" maxlength="8">
 
 
         </section>
 
         <section class="container">
 
-            <div class="number">
-                <p>1</p>
-            </div>
-            <div class="number">
-                <p>2</p>
-            </div>
-            <div class="number">
-                <p>3</p>
-            </div>
-            <div class="number">
-                <p>+</p>
-            </div>
-            <div class="number">
-                <p>4</p>
-            </div>
-            <div class="number">
-                <p>5</p>
-            </div>
-            <div class="number">
-                <p>6</p>
-            </div>
-            <div class="number">
-                <p>-</p>
-            </div>
-            <div class="number">
-                <p>7</p>
-            </div>
-            <div class="number">
-                <p>8</p>
-            </div>
-            <div class="number">
-                <p>9</p>
-            </div>
-            <div class="number">
-                <p>x</p>
-            </div>
-            <div class="number">
-                <p>C</p>
-            </div>
-            <div class="number">
-                <p>0</p>
-            </div>
-            <div class="number">
-                <p>CE</p>
-            </div>
-            <div class="number">
-                <p>/</p>
-            </div>
-
+            <button class="number" onclick="pulsar(1)">1</button>
+            <button class="number" onclick="pulsar(2)">2</button>
+            <button class="number" onclick="pulsar(3)">3</button>
+            <button class="number" onclick="pulsar('+')">+</button>
+            <button class="number" onclick="pulsar(4)">4</button>
+            <button class="number" onclick="pulsar(5)">5</button>
+            <button class="number" onclick="pulsar(6)">6</button>
+            <button class="number" onclick="pulsar('-')">-</button>
+            <button class="number" onclick="pulsar(7)">7</button>
+            <button class="number" onclick="pulsar(8)">8</button>
+            <button class="number" onclick="pulsar(9)">9</button>
+            <button class="number" onclick="pulsar('*')">X</button>
+            <button class="number" onclick="pulsar('c')">C</button>
+            <button class="number" onclick="pulsar(0)">0</button>
+            <button class="number" onclick="pulsar('m')">M</button>
+            <button class="number" onclick="pulsar('/')">/</button>
 
         </section>
 
@@ -96,6 +62,6 @@
 
 
     </main>
-    
+    <script src="./scripts/calcudelator.js"></script>
 </body>
 </html>

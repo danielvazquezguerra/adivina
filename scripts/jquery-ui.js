@@ -293,7 +293,7 @@ $.Widget._childConstructors = [];
 $.Widget.prototype = {
 	widgetName: "widget",
 	widgetEventPrefix: "",
-	defaultElement: "<div>",
+	defaultElement: "<button>",
 
 	options: {
 		classes: {},
@@ -596,7 +596,7 @@ $.Widget.prototype = {
 
 				// Allow widgets to customize the disabled handling
 				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
+				// - disabled class as method for disabling inbuttonidual parts
 				if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
 						$( this ).hasClass( "ui-state-disabled" ) ) ) {
@@ -819,22 +819,22 @@ $.position = {
 			return cachedScrollbarWidth;
 		}
 		var w1, w2,
-			div = $( "<div " +
+			button = $( "<button " +
 				"style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'>" +
-				"<div style='height:100px;width:auto;'></div></div>" ),
-			innerDiv = div.children()[ 0 ];
+				"<button style='height:100px;width:auto;'></button></button>" ),
+			innerbutton = button.children()[ 0 ];
 
-		$( "body" ).append( div );
-		w1 = innerDiv.offsetWidth;
-		div.css( "overflow", "scroll" );
+		$( "body" ).append( button );
+		w1 = innerbutton.offsetWidth;
+		button.css( "overflow", "scroll" );
 
-		w2 = innerDiv.offsetWidth;
+		w2 = innerbutton.offsetWidth;
 
 		if ( w1 === w2 ) {
-			w2 = div[ 0 ].clientWidth;
+			w2 = button[ 0 ].clientWidth;
 		}
 
-		div.remove();
+		button.remove();
 
 		return ( cachedScrollbarWidth = w1 - w2 );
 	},
@@ -1279,7 +1279,7 @@ var data = $.extend( $.expr[ ":" ], {
 
 var disableSelection = $.fn.extend( {
 	disableSelection: ( function() {
-		var eventType = "onselectstart" in document.createElement( "div" ) ?
+		var eventType = "onselectstart" in document.createElement( "button" ) ?
 			"selectstart" :
 			"mousedown";
 
@@ -2119,7 +2119,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		this.iframeBlocks = this.document.find( selector ).map( function() {
 			var iframe = $( this );
 
-			return $( "<div>" )
+			return $( "<button>" )
 				.css( "position", "absolute" )
 				.appendTo( iframe.parent() )
 				.outerWidth( iframe.outerWidth() )
@@ -2653,7 +2653,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 			if ( o.grid ) {
 
-				//Check for grid elements set to 0 to prevent divide by 0 error causing invalid
+				//Check for grid elements set to 0 to prevent buttonide by 0 error causing invalid
 				// argument errors in IE (see ticket #6950)
 				top = o.grid[ 1 ] ? this.originalPageY + Math.round( ( pageY -
 					this.originalPageY ) / o.grid[ 1 ] ) * o.grid[ 1 ] : this.originalPageY;
@@ -3822,7 +3822,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 		if ( this.element[ 0 ].nodeName.match( /^(canvas|textarea|input|select|button|img)$/i ) ) {
 
 			this.element.wrap(
-				$( "<div class='ui-wrapper' style='overflow: hidden;'></div>" ).css( {
+				$( "<button class='ui-wrapper' style='overflow: hidden;'></button>" ).css( {
 					position: this.element.css( "position" ),
 					width: this.element.outerWidth(),
 					height: this.element.outerHeight(),
@@ -3966,7 +3966,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 				handle = $.trim( n[ i ] );
 				hname = "ui-resizable-" + handle;
-				axis = $( "<div>" );
+				axis = $( "<button>" );
 				this._addClass( axis, "ui-resizable-handle " + hname );
 
 				axis.css( { zIndex: o.zIndex } );
@@ -4418,7 +4418,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 		if ( this._helper ) {
 
-			this.helper = this.helper || $( "<div style='overflow:hidden;'></div>" );
+			this.helper = this.helper || $( "<button style='overflow:hidden;'></button>" );
 
 			this._addClass( this.helper, this._helper );
 			this.helper.css( {
@@ -4977,7 +4977,7 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 
 		this._mouseInit();
 
-		this.helper = $( "<div>" );
+		this.helper = $( "<button>" );
 		this._addClass( this.helper, "ui-selectable-helper" );
 	},
 
@@ -7638,16 +7638,16 @@ var widgetsMenu = $.widget( "ui.menu", {
 		menus = submenus.add( this.element );
 		items = menus.find( this.options.items );
 
-		// Initialize menu-items containing spaces and/or dashes only as dividers
+		// Initialize menu-items containing spaces and/or dashes only as buttoniders
 		items.not( ".ui-menu-item" ).each( function() {
 			var item = $( this );
-			if ( that._isDivider( item ) ) {
-				that._addClass( item, "ui-menu-divider", "ui-widget-content" );
+			if ( that._isbuttonider( item ) ) {
+				that._addClass( item, "ui-menu-buttonider", "ui-widget-content" );
 			}
 		} );
 
 		// Don't refresh list items that are already adapted
-		newItems = items.not( ".ui-menu-item, .ui-menu-divider" );
+		newItems = items.not( ".ui-menu-item, .ui-menu-buttonider" );
 		newWrappers = newItems.children()
 			.not( ".ui-menu" )
 				.uniqueId()
@@ -7839,7 +7839,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		return !$( event.target ).closest( ".ui-menu" ).length;
 	},
 
-	_isDivider: function( item ) {
+	_isbuttonider: function( item ) {
 
 		// Match hyphen, em dash, en dash
 		return !/[^\-\u2014\u2013\s]/.test( item.text() );
@@ -7978,7 +7978,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		return this.activeMenu
 			.find( this.options.items )
 
-				// Only match on items, not dividers or other content (#10571)
+				// Only match on items, not buttoniders or other content (#10571)
 				.filter( ".ui-menu-item" )
 					.filter( function() {
 						return regex.test(
@@ -8249,7 +8249,7 @@ $.widget( "ui.autocomplete", {
 				label = ui.item.attr( "aria-label" ) || item.value;
 				if ( label && $.trim( label ).length ) {
 					this.liveRegion.children().hide();
-					$( "<div>" ).text( label ).appendTo( this.liveRegion );
+					$( "<button>" ).text( label ).appendTo( this.liveRegion );
 				}
 			},
 			menuselect: function( event, ui ) {
@@ -8283,7 +8283,7 @@ $.widget( "ui.autocomplete", {
 			}
 		} );
 
-		this.liveRegion = $( "<div>", {
+		this.liveRegion = $( "<button>", {
 			role: "status",
 			"aria-live": "assertive",
 			"aria-relevant": "additions"
@@ -8549,7 +8549,7 @@ $.widget( "ui.autocomplete", {
 
 	_renderItem: function( ul, item ) {
 		return $( "<li>" )
-			.append( $( "<div>" ).text( item.label ) )
+			.append( $( "<button>" ).text( item.label ) )
 			.appendTo( ul );
 	},
 
@@ -8645,7 +8645,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 			message = this.options.messages.noResults;
 		}
 		this.liveRegion.children().hide();
-		$( "<div>" ).text( message ).appendTo( this.liveRegion );
+		$( "<button>" ).text( message ).appendTo( this.liveRegion );
 	}
 } );
 
@@ -8675,7 +8675,7 @@ var controlgroupCornerRegex = /ui-corner-([a-z]){2,6}/g;
 
 var widgetsControlgroup = $.widget( "ui.controlgroup", {
 	version: "1.12.1",
-	defaultElement: "<div>",
+	defaultElement: "<button>",
 	options: {
 		direction: "horizontal",
 		disabled: null,
@@ -8977,7 +8977,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 		// We read the type here, because it makes more sense to throw a element type error first,
 		// rather then the error for lack of a label. Often if its the wrong type, it
-		// won't have a label (e.g. calling on a div, btn, etc)
+		// won't have a label (e.g. calling on a button, btn, etc)
 		this._readType();
 
 		labels = this.element.labels();
@@ -9612,7 +9612,7 @@ function datepicker_getZindex( elem ) {
 			// IE returns 0 when zIndex is not specified
 			// other browsers return a string
 			// we ignore the case of nested elements with an explicit value of 0
-			// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
+			// <button style="z-index: -10;"><button style="z-index: 0;"></button></button>
 			value = parseInt( elem.css( "zIndex" ), 10 );
 			if ( !isNaN( value ) && value !== 0 ) {
 				return value;
@@ -9634,7 +9634,7 @@ function Datepicker() {
 	this._disabledInputs = []; // List of date picker inputs that have been disabled
 	this._datepickerShowing = false; // True if the popup picker is showing , false if not
 	this._inDialog = false; // True if showing within a "dialog", false if not
-	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
+	this._mainbuttonId = "ui-datepicker-button"; // The ID of the main datepicker buttonision
 	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
 	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
 	this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
@@ -9715,7 +9715,7 @@ function Datepicker() {
 	$.extend( this._defaults, this.regional[ "" ] );
 	this.regional.en = $.extend( true, {}, this.regional[ "" ] );
 	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
-	this.dpDiv = datepicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) );
+	this.dpbutton = datepicker_bindHover( $( "<button id='" + this._mainbuttonId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></button>" ) );
 }
 
 $.extend( Datepicker.prototype, {
@@ -9727,7 +9727,7 @@ $.extend( Datepicker.prototype, {
 
 	// TODO rename to "widget" when switching to widget factory
 	_widgetDatepicker: function() {
-		return this.dpDiv;
+		return this.dpbutton;
 	},
 
 	/* Override the default settings for all instances of the date picker.
@@ -9740,13 +9740,13 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Attach the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
+	 * @param  target	element - the target input field or buttonision or span
 	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
 	 */
 	_attachDatepicker: function( target, settings ) {
 		var nodeName, inline, inst;
 		nodeName = target.nodeName.toLowerCase();
-		inline = ( nodeName === "div" || nodeName === "span" );
+		inline = ( nodeName === "button" || nodeName === "span" );
 		if ( !target.id ) {
 			this.uuid += 1;
 			target.id = "dp" + this.uuid;
@@ -9767,8 +9767,8 @@ $.extend( Datepicker.prototype, {
 			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
 			drawMonth: 0, drawYear: 0, // month being drawn
 			inline: inline, // is datepicker inline or not
-			dpDiv: ( !inline ? this.dpDiv : // presentation div
-			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
+			dpbutton: ( !inline ? this.dpbutton : // presentation button
+			datepicker_bindHover( $( "<button class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></button>" ) ) ) };
 	},
 
 	/* Attach the date picker to an input field. */
@@ -9867,13 +9867,13 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Attach an inline date picker to a div. */
+	/* Attach an inline date picker to a button. */
 	_inlineDatepicker: function( target, inst ) {
-		var divSpan = $( target );
-		if ( divSpan.hasClass( this.markerClassName ) ) {
+		var buttonSpan = $( target );
+		if ( buttonSpan.hasClass( this.markerClassName ) ) {
 			return;
 		}
-		divSpan.addClass( this.markerClassName ).append( inst.dpDiv );
+		buttonSpan.addClass( this.markerClassName ).append( inst.dpbutton );
 		$.data( target, "datepicker", inst );
 		this._setDate( inst, this._getDefaultDate( inst ), true );
 		this._updateDatepicker( inst );
@@ -9884,9 +9884,9 @@ $.extend( Datepicker.prototype, {
 			this._disableDatepicker( target );
 		}
 
-		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
-		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
-		inst.dpDiv.css( "display", "block" );
+		// Set display:block in place of inst.dpbutton.show() which won't work on disconnected elements
+		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached button has zero height
+		inst.dpbutton.css( "display", "block" );
 	},
 
 	/* Pop-up the date picker in a "dialog" box.
@@ -9932,17 +9932,17 @@ $.extend( Datepicker.prototype, {
 		this._dialogInput.css( "left", ( this._pos[ 0 ] + 20 ) + "px" ).css( "top", this._pos[ 1 ] + "px" );
 		inst.settings.onSelect = onSelect;
 		this._inDialog = true;
-		this.dpDiv.addClass( this._dialogClass );
+		this.dpbutton.addClass( this._dialogClass );
 		this._showDatepicker( this._dialogInput[ 0 ] );
 		if ( $.blockUI ) {
-			$.blockUI( this.dpDiv );
+			$.blockUI( this.dpbutton );
 		}
 		$.data( this._dialogInput[ 0 ], "datepicker", inst );
 		return this;
 	},
 
 	/* Detach a datepicker from its control.
-	 * @param  target	element - the target input field or division or span
+	 * @param  target	element - the target input field or buttonision or span
 	 */
 	_destroyDatepicker: function( target ) {
 		var nodeName,
@@ -9963,7 +9963,7 @@ $.extend( Datepicker.prototype, {
 				off( "keydown", this._doKeyDown ).
 				off( "keypress", this._doKeyPress ).
 				off( "keyup", this._doKeyUp );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
+		} else if ( nodeName === "button" || nodeName === "span" ) {
 			$target.removeClass( this.markerClassName ).empty();
 		}
 
@@ -9973,7 +9973,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Enable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
+	 * @param  target	element - the target input field or buttonision or span
 	 */
 	_enableDatepicker: function( target ) {
 		var nodeName, inline,
@@ -9990,7 +9990,7 @@ $.extend( Datepicker.prototype, {
 			inst.trigger.filter( "button" ).
 				each( function() { this.disabled = false; } ).end().
 				filter( "img" ).css( { opacity: "1.0", cursor: "" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
+		} else if ( nodeName === "button" || nodeName === "span" ) {
 			inline = $target.children( "." + this._inlineClass );
 			inline.children().removeClass( "ui-state-disabled" );
 			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
@@ -10001,7 +10001,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Disable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
+	 * @param  target	element - the target input field or buttonision or span
 	 */
 	_disableDatepicker: function( target ) {
 		var nodeName, inline,
@@ -10018,7 +10018,7 @@ $.extend( Datepicker.prototype, {
 			inst.trigger.filter( "button" ).
 				each( function() { this.disabled = true; } ).end().
 				filter( "img" ).css( { opacity: "0.5", cursor: "default" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
+		} else if ( nodeName === "button" || nodeName === "span" ) {
 			inline = $target.children( "." + this._inlineClass );
 			inline.children().addClass( "ui-state-disabled" );
 			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
@@ -10030,7 +10030,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Is the first field in a jQuery collection disabled as a datepicker?
-	 * @param  target	element - the target input field or division or span
+	 * @param  target	element - the target input field or buttonision or span
 	 * @return boolean - true if disabled, false if enabled
 	 */
 	_isDisabledDatepicker: function( target ) {
@@ -10046,7 +10046,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Retrieve the instance data for the target control.
-	 * @param  target  element - the target input field or division or span
+	 * @param  target  element - the target input field or buttonision or span
 	 * @return  object - the associated instance data
 	 * @throws  error if a jQuery problem getting data
 	 */
@@ -10059,8 +10059,8 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Update or retrieve the settings for a date picker attached to an input field or division.
-	 * @param  target  element - the target input field or division or span
+	/* Update or retrieve the settings for a date picker attached to an input field or buttonision.
+	 * @param  target  element - the target input field or buttonision or span
 	 * @param  name	object - the new settings to update or
 	 *				string - the name of the setting to change or retrieve,
 	 *				when retrieving also "all" for all instance settings or
@@ -10121,8 +10121,8 @@ $.extend( Datepicker.prototype, {
 		this._optionDatepicker( target, name, value );
 	},
 
-	/* Redraw the date picker attached to an input field or division.
-	 * @param  target  element - the target input field or division or span
+	/* Redraw the date picker attached to an input field or buttonision.
+	 * @param  target  element - the target input field or buttonision or span
 	 */
 	_refreshDatepicker: function( target ) {
 		var inst = this._getInst( target );
@@ -10132,7 +10132,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Set the dates for a jQuery selection.
-	 * @param  target element - the target input field or division or span
+	 * @param  target element - the target input field or buttonision or span
 	 * @param  date	Date - the new date
 	 */
 	_setDateDatepicker: function( target, date ) {
@@ -10145,7 +10145,7 @@ $.extend( Datepicker.prototype, {
 	},
 
 	/* Get the date(s) for the first entry in a jQuery selection.
-	 * @param  target element - the target input field or division or span
+	 * @param  target element - the target input field or buttonision or span
 	 * @param  noDefault boolean - true if no default date is to be used
 	 * @return Date - the current date
 	 */
@@ -10162,7 +10162,7 @@ $.extend( Datepicker.prototype, {
 		var onSelect, dateStr, sel,
 			inst = $.datepicker._getInst( event.target ),
 			handled = true,
-			isRTL = inst.dpDiv.is( ".ui-datepicker-rtl" );
+			isRTL = inst.dpbutton.is( ".ui-datepicker-rtl" );
 
 		inst._keyEvent = true;
 		if ( $.datepicker._datepickerShowing ) {
@@ -10171,7 +10171,7 @@ $.extend( Datepicker.prototype, {
 						handled = false;
 						break; // hide on tab out
 				case 13: sel = $( "td." + $.datepicker._dayOverClass + ":not(." +
-									$.datepicker._currentClass + ")", inst.dpDiv );
+									$.datepicker._currentClass + ")", inst.dpbutton );
 						if ( sel[ 0 ] ) {
 							$.datepicker._selectDay( event.target, inst.selectedMonth, inst.selectedYear, sel[ 0 ] );
 						}
@@ -10314,7 +10314,7 @@ $.extend( Datepicker.prototype, {
 
 		inst = $.datepicker._getInst( input );
 		if ( $.datepicker._curInst && $.datepicker._curInst !== inst ) {
-			$.datepicker._curInst.dpDiv.stop( true, true );
+			$.datepicker._curInst.dpbutton.stop( true, true );
 			if ( inst && $.datepicker._datepickerShowing ) {
 				$.datepicker._hideDatepicker( $.datepicker._curInst.input[ 0 ] );
 			}
@@ -10349,29 +10349,29 @@ $.extend( Datepicker.prototype, {
 		$.datepicker._pos = null;
 
 		//to avoid flashes on Firefox
-		inst.dpDiv.empty();
+		inst.dpbutton.empty();
 
 		// determine sizing offscreen
-		inst.dpDiv.css( { position: "absolute", display: "block", top: "-1000px" } );
+		inst.dpbutton.css( { position: "absolute", display: "block", top: "-1000px" } );
 		$.datepicker._updateDatepicker( inst );
 
 		// fix width for dynamic number of date pickers
 		// and adjust position before showing
 		offset = $.datepicker._checkOffset( inst, offset, isFixed );
-		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
+		inst.dpbutton.css( { position: ( $.datepicker._inDialog && $.blockUI ?
 			"static" : ( isFixed ? "fixed" : "absolute" ) ), display: "none",
 			left: offset.left + "px", top: offset.top + "px" } );
 
 		if ( !inst.inline ) {
 			showAnim = $.datepicker._get( inst, "showAnim" );
 			duration = $.datepicker._get( inst, "duration" );
-			inst.dpDiv.css( "z-index", datepicker_getZindex( $( input ) ) + 1 );
+			inst.dpbutton.css( "z-index", datepicker_getZindex( $( input ) ) + 1 );
 			$.datepicker._datepickerShowing = true;
 
 			if ( $.effects && $.effects.effect[ showAnim ] ) {
-				inst.dpDiv.show( showAnim, $.datepicker._get( inst, "showOptions" ), duration );
+				inst.dpbutton.show( showAnim, $.datepicker._get( inst, "showOptions" ), duration );
 			} else {
-				inst.dpDiv[ showAnim || "show" ]( showAnim ? duration : null );
+				inst.dpbutton[ showAnim || "show" ]( showAnim ? duration : null );
 			}
 
 			if ( $.datepicker._shouldFocusInput( inst ) ) {
@@ -10386,26 +10386,26 @@ $.extend( Datepicker.prototype, {
 	_updateDatepicker: function( inst ) {
 		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
 		datepicker_instActive = inst; // for delegate hover events
-		inst.dpDiv.empty().append( this._generateHTML( inst ) );
+		inst.dpbutton.empty().append( this._generateHTML( inst ) );
 		this._attachHandlers( inst );
 
 		var origyearshtml,
 			numMonths = this._getNumberOfMonths( inst ),
 			cols = numMonths[ 1 ],
 			width = 17,
-			activeCell = inst.dpDiv.find( "." + this._dayOverClass + " a" );
+			activeCell = inst.dpbutton.find( "." + this._dayOverClass + " a" );
 
 		if ( activeCell.length > 0 ) {
 			datepicker_handleMouseover.apply( activeCell.get( 0 ) );
 		}
 
-		inst.dpDiv.removeClass( "ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4" ).width( "" );
+		inst.dpbutton.removeClass( "ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4" ).width( "" );
 		if ( cols > 1 ) {
-			inst.dpDiv.addClass( "ui-datepicker-multi-" + cols ).css( "width", ( width * cols ) + "em" );
+			inst.dpbutton.addClass( "ui-datepicker-multi-" + cols ).css( "width", ( width * cols ) + "em" );
 		}
-		inst.dpDiv[ ( numMonths[ 0 ] !== 1 || numMonths[ 1 ] !== 1 ? "add" : "remove" ) +
+		inst.dpbutton[ ( numMonths[ 0 ] !== 1 || numMonths[ 1 ] !== 1 ? "add" : "remove" ) +
 			"Class" ]( "ui-datepicker-multi" );
-		inst.dpDiv[ ( this._get( inst, "isRTL" ) ? "add" : "remove" ) +
+		inst.dpbutton[ ( this._get( inst, "isRTL" ) ? "add" : "remove" ) +
 			"Class" ]( "ui-datepicker-rtl" );
 
 		if ( inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput( inst ) ) {
@@ -10419,7 +10419,7 @@ $.extend( Datepicker.prototype, {
 
 				//assure that inst.yearshtml didn't change.
 				if ( origyearshtml === inst.yearshtml && inst.yearshtml ) {
-					inst.dpDiv.find( "select.ui-datepicker-year:first" ).replaceWith( inst.yearshtml );
+					inst.dpbutton.find( "select.ui-datepicker-year:first" ).replaceWith( inst.yearshtml );
 				}
 				origyearshtml = inst.yearshtml = null;
 			}, 0 );
@@ -10435,8 +10435,8 @@ $.extend( Datepicker.prototype, {
 
 	/* Check positioning to remain on screen. */
 	_checkOffset: function( inst, offset, isFixed ) {
-		var dpWidth = inst.dpDiv.outerWidth(),
-			dpHeight = inst.dpDiv.outerHeight(),
+		var dpWidth = inst.dpbutton.outerWidth(),
+			dpHeight = inst.dpbutton.outerHeight(),
 			inputWidth = inst.input ? inst.input.outerWidth() : 0,
 			inputHeight = inst.input ? inst.input.outerHeight() : 0,
 			viewWidth = document.documentElement.clientWidth + ( isFixed ? 0 : $( document ).scrollLeft() ),
@@ -10489,9 +10489,9 @@ $.extend( Datepicker.prototype, {
 
 			// DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
 			if ( $.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] ) ) {
-				inst.dpDiv.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
+				inst.dpbutton.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
 			} else {
-				inst.dpDiv[ ( showAnim === "slideDown" ? "slideUp" :
+				inst.dpbutton[ ( showAnim === "slideDown" ? "slideUp" :
 					( showAnim === "fadeIn" ? "fadeOut" : "hide" ) ) ]( ( showAnim ? duration : null ), postProcess );
 			}
 
@@ -10510,7 +10510,7 @@ $.extend( Datepicker.prototype, {
 				this._dialogInput.css( { position: "absolute", left: "0", top: "-100px" } );
 				if ( $.blockUI ) {
 					$.unblockUI();
-					$( "body" ).append( this.dpDiv );
+					$( "body" ).append( this.dpbutton );
 				}
 			}
 			this._inDialog = false;
@@ -10519,7 +10519,7 @@ $.extend( Datepicker.prototype, {
 
 	/* Tidy up after a dialog display. */
 	_tidyDialog: function( inst ) {
-		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
+		inst.dpbutton.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
 	},
 
 	/* Close date picker if clicked elsewhere. */
@@ -10531,8 +10531,8 @@ $.extend( Datepicker.prototype, {
 		var $target = $( event.target ),
 			inst = $.datepicker._getInst( $target[ 0 ] );
 
-		if ( ( ( $target[ 0 ].id !== $.datepicker._mainDivId &&
-				$target.parents( "#" + $.datepicker._mainDivId ).length === 0 &&
+		if ( ( ( $target[ 0 ].id !== $.datepicker._mainbuttonId &&
+				$target.parents( "#" + $.datepicker._mainbuttonId ).length === 0 &&
 				!$target.hasClass( $.datepicker.markerClassName ) &&
 				!$target.closest( "." + $.datepicker._triggerClass ).length &&
 				$.datepicker._datepickerShowing && !( $.datepicker._inDialog && $.blockUI ) ) ) ||
@@ -11184,7 +11184,7 @@ $.extend( Datepicker.prototype, {
 	_attachHandlers: function( inst ) {
 		var stepMonths = this._get( inst, "stepMonths" ),
 			id = "#" + inst.id.replace( /\\\\/g, "\\" );
-		inst.dpDiv.find( "[data-handler]" ).map( function() {
+		inst.dpbutton.find( "[data-handler]" ).map( function() {
 			var handler = {
 				prev: function() {
 					$.datepicker._adjustDate( id, -stepMonths, "M" );
@@ -11288,9 +11288,9 @@ $.extend( Datepicker.prototype, {
 		controls = ( !inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
 			this._get( inst, "closeText" ) + "</button>" : "" );
 
-		buttonPanel = ( showButtonPanel ) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
+		buttonPanel = ( showButtonPanel ) ? "<button class='ui-datepicker-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
 			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
-			">" + currentText + "</button>" : "" ) + ( isRTL ? "" : controls ) + "</div>" : "";
+			">" + currentText + "</button>" : "" ) + ( isRTL ? "" : controls ) + "</button>" : "";
 
 		firstDay = parseInt( this._get( inst, "firstDay" ), 10 );
 		firstDay = ( isNaN( firstDay ) ? 0 : firstDay );
@@ -11314,7 +11314,7 @@ $.extend( Datepicker.prototype, {
 				cornerClass = " ui-corner-all";
 				calender = "";
 				if ( isMultiMonth ) {
-					calender += "<div class='ui-datepicker-group";
+					calender += "<button class='ui-datepicker-group";
 					if ( numMonths[ 1 ] > 1 ) {
 						switch ( col ) {
 							case 0: calender += " ui-datepicker-group-first";
@@ -11326,12 +11326,12 @@ $.extend( Datepicker.prototype, {
 					}
 					calender += "'>";
 				}
-				calender += "<div class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
+				calender += "<button class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
 					( /all|left/.test( cornerClass ) && row === 0 ? ( isRTL ? next : prev ) : "" ) +
 					( /all|right/.test( cornerClass ) && row === 0 ? ( isRTL ? prev : next ) : "" ) +
 					this._generateMonthYearHeader( inst, drawMonth, drawYear, minDate, maxDate,
 					row > 0 || col > 0, monthNames, monthNamesShort ) + // draw month headers
-					"</div><table class='ui-datepicker-calendar'><thead>" +
+					"</button><table class='ui-datepicker-calendar'><thead>" +
 					"<tr>";
 				thead = ( showWeek ? "<th class='ui-datepicker-week-col'>" + this._get( inst, "weekHeader" ) + "</th>" : "" );
 				for ( dow = 0; dow < 7; dow++ ) { // days of the week
@@ -11389,8 +11389,8 @@ $.extend( Datepicker.prototype, {
 					drawMonth = 0;
 					drawYear++;
 				}
-				calender += "</tbody></table>" + ( isMultiMonth ? "</div>" +
-							( ( numMonths[ 0 ] > 0 && col === numMonths[ 1 ] - 1 ) ? "<div class='ui-datepicker-row-break'></div>" : "" ) : "" );
+				calender += "</tbody></table>" + ( isMultiMonth ? "</button>" +
+							( ( numMonths[ 0 ] > 0 && col === numMonths[ 1 ] - 1 ) ? "<button class='ui-datepicker-row-break'></button>" : "" ) : "" );
 				group += calender;
 			}
 			html += group;
@@ -11408,7 +11408,7 @@ $.extend( Datepicker.prototype, {
 			changeMonth = this._get( inst, "changeMonth" ),
 			changeYear = this._get( inst, "changeYear" ),
 			showMonthAfterYear = this._get( inst, "showMonthAfterYear" ),
-			html = "<div class='ui-datepicker-title'>",
+			html = "<button class='ui-datepicker-title'>",
 			monthHtml = "";
 
 		// Month selection
@@ -11469,7 +11469,7 @@ $.extend( Datepicker.prototype, {
 		if ( showMonthAfterYear ) {
 			html += ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" ) + monthHtml;
 		}
-		html += "</div>"; // Close datepicker_header
+		html += "</button>"; // Close datepicker_header
 		return html;
 	},
 
@@ -11591,12 +11591,12 @@ $.extend( Datepicker.prototype, {
 
 /*
  * Bind hover events for datepicker elements.
- * Done via delegate so the binding only occurs once in the lifetime of the parent div.
+ * Done via delegate so the binding only occurs once in the lifetime of the parent button.
  * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
  */
-function datepicker_bindHover( dpDiv ) {
+function datepicker_bindHover( dpbutton ) {
 	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
-	return dpDiv.on( "mouseout", selector, function() {
+	return dpbutton.on( "mouseout", selector, function() {
 			$( this ).removeClass( "ui-state-hover" );
 			if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
 				$( this ).removeClass( "ui-datepicker-prev-hover" );
@@ -11609,7 +11609,7 @@ function datepicker_bindHover( dpDiv ) {
 }
 
 function datepicker_handleMouseover() {
-	if ( !$.datepicker._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpDiv.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
+	if ( !$.datepicker._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpbutton.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
 		$( this ).parents( ".ui-datepicker-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
 		$( this ).addClass( "ui-state-hover" );
 		if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
@@ -11650,8 +11650,8 @@ $.fn.datepicker = function( options ) {
 	}
 
 	/* Append datepicker main container to body if not exist. */
-	if ( $( "#" + $.datepicker._mainDivId ).length === 0 ) {
-		$( "body" ).append( $.datepicker.dpDiv );
+	if ( $( "#" + $.datepicker._mainbuttonId ).length === 0 ) {
+		$( "body" ).append( $.datepicker.dpbutton );
 	}
 
 	var otherArgs = Array.prototype.slice.call( arguments, 1 );
@@ -12000,11 +12000,11 @@ $.widget( "ui.dialog", {
 	},
 
 	_createWrapper: function() {
-		this.uiDialog = $( "<div>" )
+		this.uiDialog = $( "<button>" )
 			.hide()
 			.attr( {
 
-				// Setting tabIndex makes the div focusable
+				// Setting tabIndex makes the button focusable
 				tabIndex: -1,
 				role: "dialog"
 			} )
@@ -12062,7 +12062,7 @@ $.widget( "ui.dialog", {
 	_createTitlebar: function() {
 		var uiDialogTitle;
 
-		this.uiDialogTitlebar = $( "<div>" );
+		this.uiDialogTitlebar = $( "<button>" );
 		this._addClass( this.uiDialogTitlebar,
 			"ui-dialog-titlebar", "ui-widget-header ui-helper-clearfix" );
 		this._on( this.uiDialogTitlebar, {
@@ -12118,11 +12118,11 @@ $.widget( "ui.dialog", {
 	},
 
 	_createButtonPane: function() {
-		this.uiDialogButtonPane = $( "<div>" );
+		this.uiDialogButtonPane = $( "<button>" );
 		this._addClass( this.uiDialogButtonPane, "ui-dialog-buttonpane",
 			"ui-widget-content ui-helper-clearfix" );
 
-		this.uiButtonSet = $( "<div>" )
+		this.uiButtonSet = $( "<button>" )
 			.appendTo( this.uiDialogButtonPane );
 		this._addClass( this.uiButtonSet, "ui-dialog-buttonset" );
 
@@ -12429,7 +12429,7 @@ $.widget( "ui.dialog", {
 	_size: function() {
 
 		// If the user has resized the dialog, the .ui-dialog and .ui-dialog-content
-		// divs will both have width and height set, so we need to reset them
+		// buttons will both have width and height set, so we need to reset them
 		var nonContentHeight, minContentHeight, maxContentHeight,
 			options = this.options;
 
@@ -12476,7 +12476,7 @@ $.widget( "ui.dialog", {
 		this.iframeBlocks = this.document.find( "iframe" ).map( function() {
 			var iframe = $( this );
 
-			return $( "<div>" )
+			return $( "<button>" )
 				.css( {
 					position: "absolute",
 					width: iframe.outerWidth(),
@@ -12535,7 +12535,7 @@ $.widget( "ui.dialog", {
 			} );
 		}
 
-		this.overlay = $( "<div>" )
+		this.overlay = $( "<button>" )
 			.appendTo( this._appendTo() );
 
 		this._addClass( this.overlay, null, "ui-widget-overlay ui-front" );
@@ -12647,15 +12647,15 @@ var widgetsProgressbar = $.widget( "ui.progressbar", {
 		} );
 		this._addClass( "ui-progressbar", "ui-widget ui-widget-content" );
 
-		this.valueDiv = $( "<div>" ).appendTo( this.element );
-		this._addClass( this.valueDiv, "ui-progressbar-value", "ui-widget-header" );
+		this.valuebutton = $( "<button>" ).appendTo( this.element );
+		this._addClass( this.valuebutton, "ui-progressbar-value", "ui-widget-header" );
 		this._refreshValue();
 	},
 
 	_destroy: function() {
 		this.element.removeAttr( "role aria-valuemin aria-valuemax aria-valuenow" );
 
-		this.valueDiv.remove();
+		this.valuebutton.remove();
 	},
 
 	value: function( newValue ) {
@@ -12721,29 +12721,29 @@ var widgetsProgressbar = $.widget( "ui.progressbar", {
 		var value = this.options.value,
 			percentage = this._percentage();
 
-		this.valueDiv
+		this.valuebutton
 			.toggle( this.indeterminate || value > this.min )
 			.width( percentage.toFixed( 0 ) + "%" );
 
 		this
-			._toggleClass( this.valueDiv, "ui-progressbar-complete", null,
+			._toggleClass( this.valuebutton, "ui-progressbar-complete", null,
 				value === this.options.max )
 			._toggleClass( "ui-progressbar-indeterminate", null, this.indeterminate );
 
 		if ( this.indeterminate ) {
 			this.element.removeAttr( "aria-valuenow" );
-			if ( !this.overlayDiv ) {
-				this.overlayDiv = $( "<div>" ).appendTo( this.valueDiv );
-				this._addClass( this.overlayDiv, "ui-progressbar-overlay" );
+			if ( !this.overlaybutton ) {
+				this.overlaybutton = $( "<button>" ).appendTo( this.valuebutton );
+				this._addClass( this.overlaybutton, "ui-progressbar-overlay" );
 			}
 		} else {
 			this.element.attr( {
 				"aria-valuemax": this.options.max,
 				"aria-valuenow": value
 			} );
-			if ( this.overlayDiv ) {
-				this.overlayDiv.remove();
-				this.overlayDiv = null;
+			if ( this.overlaybutton ) {
+				this.overlaybutton.remove();
+				this.overlaybutton = null;
 			}
 		}
 
@@ -12891,7 +12891,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		} );
 
 		// Wrap menu
-		this.menuWrap = $( "<div>" ).append( this.menu );
+		this.menuWrap = $( "<button>" ).append( this.menu );
 		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-front" );
 		this.menuWrap.appendTo( this._appendTo() );
 
@@ -12938,8 +12938,8 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 			return false;
 		};
 
-		// Selects often contain empty items, but never contain dividers
-		this.menuInstance._isDivider = function() {
+		// Selects often contain empty items, but never contain buttoniders
+		this.menuInstance._isbuttonider = function() {
 			return false;
 		};
 	},
@@ -13064,7 +13064,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 				li = $( "<li>", {
 					text: item.optgroup
 				} );
-				that._addClass( li, "ui-selectmenu-optgroup", "ui-menu-divider" +
+				that._addClass( li, "ui-selectmenu-optgroup", "ui-menu-buttonider" +
 					( item.element.parent( "optgroup" ).prop( "disabled" ) ?
 						" ui-state-disabled" :
 						"" ) );
@@ -13084,7 +13084,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 	_renderItem: function( ul, item ) {
 		var li = $( "<li>" ),
-			wrapper = $( "<div>", {
+			wrapper = $( "<button>", {
 				title: item.element.attr( "title" )
 			} );
 
@@ -13548,7 +13548,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			}
 
 			if ( !this.range || !this.range.length ) {
-				this.range = $( "<div>" )
+				this.range = $( "<button>" )
 					.appendTo( this.element );
 
 				this._addClass( this.range, "ui-slider-range" );
@@ -13962,7 +13962,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		max = aboveMin + min;
 		if ( max > this.options.max ) {
 
-			//If max is not divisible by step, rounding off may increase its value
+			//If max is not buttonisible by step, rounding off may increase its value
 			max -= step;
 		}
 		this.max = parseFloat( max.toFixed( this._precision() ) );
@@ -15197,7 +15197,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_createPanel: function( id ) {
-		return $( "<div>" )
+		return $( "<button>" )
 			.attr( "id", id )
 			.data( "ui-tabs-destroy", true );
 	},
@@ -15715,7 +15715,7 @@ $.widget( "ui.tooltip", {
 		this.parents = {};
 
 		// Append the aria-live region so tooltips announce correctly
-		this.liveRegion = $( "<div>" )
+		this.liveRegion = $( "<button>" )
 			.attr( {
 				role: "log",
 				"aria-live": "assertive",
@@ -15901,7 +15901,7 @@ $.widget( "ui.tooltip", {
 		// JAWS announces deletions even when aria-relevant="additions"
 		// Voiceover will sometimes re-read the entire log region's contents from the beginning
 		this.liveRegion.children().hide();
-		a11yContent = $( "<div>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
+		a11yContent = $( "<button>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
 		a11yContent.removeAttr( "name" ).find( "[name]" ).removeAttr( "name" );
 		a11yContent.removeAttr( "id" ).find( "[id]" ).removeAttr( "id" );
 		a11yContent.appendTo( this.liveRegion );
@@ -16040,8 +16040,8 @@ $.widget( "ui.tooltip", {
 	},
 
 	_tooltip: function( element ) {
-		var tooltip = $( "<div>" ).attr( "role", "tooltip" ),
-			content = $( "<div>" ).appendTo( tooltip ),
+		var tooltip = $( "<button>" ).attr( "role", "tooltip" ),
+			content = $( "<button>" ).appendTo( tooltip ),
 			id = tooltip.uniqueId().attr( "id" );
 
 		this._addClass( content, "ui-tooltip-content" );
@@ -17104,7 +17104,7 @@ if ( $.uiBackCompat !== false ) {
 					height: element.outerHeight( true ),
 					"float": element.css( "float" )
 				},
-				wrapper = $( "<div></div>" )
+				wrapper = $( "<button></button>" )
 					.addClass( "ui-effects-wrapper" )
 					.css( {
 						fontSize: "100%",
@@ -17644,7 +17644,7 @@ $.fn.extend( {
 				width: target.innerWidth()
 			},
 			startPosition = element.offset(),
-			transfer = $( "<div class='ui-effects-transfer'></div>" )
+			transfer = $( "<button class='ui-effects-transfer'></button>" )
 				.appendTo( "body" )
 				.addClass( options.className )
 				.css( {
@@ -18064,11 +18064,11 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 			mx = j - ( cells - 1 ) / 2;
 
 			// Create a clone of the now hidden main element that will be absolute positioned
-			// within a wrapper div off the -left and -top equal to size of our pieces
+			// within a wrapper button off the -left and -top equal to size of our pieces
 			element
 				.clone()
 				.appendTo( "body" )
-				.wrap( "<div></div>" )
+				.wrap( "<button></button>" )
 				.css( {
 					position: "absolute",
 					visibility: "visible",

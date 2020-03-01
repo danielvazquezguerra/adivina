@@ -38,8 +38,11 @@ header {
 
 /*input----*/
 
-.drop-in { 
+.screen { 
 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     align-self: center;
     border-bottom: 10px solid black;
     box-sizing: border-box;
@@ -47,6 +50,35 @@ header {
     min-height: 200px;
     margin: 10px;
     
+}
+
+#inputscreen {
+
+    background-color: transparent;
+    width: 95%;
+    height: 50%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 0px;
+    outline: none;
+
+}
+
+#inputscreen:enabled {
+    color: black;
+    font-size: 30px;
+    font-family: gotham;
+    font-weight: bold;
+    outline: none;
+
+}
+
+#inputscreen:focus:hover {
+
+    border-style: none;
+    border: 0px;
+    outline: none;
+
 }
 
 /*teclado----*/
@@ -65,17 +97,20 @@ header {
 
 }
 
-.number {
+button {
+
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
     color: black;
     font-family: 'gotham black';
     font-size: 50px;
     font-size: 2em;
     width: 100%;
     height: 100%;
-    border-bottom: 5px solid black ;
+    border: 0px;
+    border-bottom: 2px solid black;
 
 }
 

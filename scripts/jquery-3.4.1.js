@@ -4809,7 +4809,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 			// Convert html into DOM nodes
 			} else {
-				tmp = tmp || fragment.appendChild( context.createElement( "div" ) );
+				tmp = tmp || fragment.appendChild( context.createElement( "button" ) );
 
 				// Deserialize a standard representation
 				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
@@ -4876,7 +4876,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 ( function() {
 	var fragment = document.createDocumentFragment(),
-		div = fragment.appendChild( document.createElement( "div" ) ),
+		button = fragment.appendChild( document.createElement( "button" ) ),
 		input = document.createElement( "input" );
 
 	// Support: Android 4.0 - 4.3 only
@@ -4887,16 +4887,16 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	input.setAttribute( "checked", "checked" );
 	input.setAttribute( "name", "t" );
 
-	div.appendChild( input );
+	button.appendChild( input );
 
 	// Support: Android <=4.1 only
 	// Older WebKit doesn't clone checked state correctly in fragments
-	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
+	support.checkClone = button.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
 	// Support: IE <=11 only
 	// Make sure textarea (and checkbox) defaultValue is properly cloned
-	div.innerHTML = "<textarea>x</textarea>";
-	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
+	button.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!button.cloneNode( true ).lastChild.defaultValue;
 } )();
 
 
@@ -6249,45 +6249,45 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 	function computeStyleTests() {
 
 		// This is a singleton, we need to execute it only once
-		if ( !div ) {
+		if ( !button ) {
 			return;
 		}
 
 		container.style.cssText = "position:absolute;left:-11111px;width:60px;" +
 			"margin-top:1px;padding:0;border:0";
-		div.style.cssText =
+		button.style.cssText =
 			"position:relative;display:block;box-sizing:border-box;overflow:scroll;" +
 			"margin:auto;border:1px;padding:1px;" +
 			"width:60%;top:1%";
-		documentElement.appendChild( container ).appendChild( div );
+		documentElement.appendChild( container ).appendChild( button );
 
-		var divStyle = window.getComputedStyle( div );
-		pixelPositionVal = divStyle.top !== "1%";
+		var buttonStyle = window.getComputedStyle( button );
+		pixelPositionVal = buttonStyle.top !== "1%";
 
 		// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
-		reliableMarginLeftVal = roundPixelMeasures( divStyle.marginLeft ) === 12;
+		reliableMarginLeftVal = roundPixelMeasures( buttonStyle.marginLeft ) === 12;
 
 		// Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
 		// Some styles come back with percentage values, even though they shouldn't
-		div.style.right = "60%";
-		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
+		button.style.right = "60%";
+		pixelBoxStylesVal = roundPixelMeasures( buttonStyle.right ) === 36;
 
 		// Support: IE 9 - 11 only
 		// Detect misreporting of content dimensions for box-sizing:border-box elements
-		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
+		boxSizingReliableVal = roundPixelMeasures( buttonStyle.width ) === 36;
 
 		// Support: IE 9 only
 		// Detect overflow:scroll screwiness (gh-3699)
 		// Support: Chrome <=64
 		// Don't get tricked when zoom affects offsetWidth (gh-4029)
-		div.style.position = "absolute";
-		scrollboxSizeVal = roundPixelMeasures( div.offsetWidth / 3 ) === 12;
+		button.style.position = "absolute";
+		scrollboxSizeVal = roundPixelMeasures( button.offsetWidth / 3 ) === 12;
 
 		documentElement.removeChild( container );
 
-		// Nullify the div so it wouldn't be stored in the memory and
+		// Nullify the button so it wouldn't be stored in the memory and
 		// it will also be a sign that checks already performed
-		div = null;
+		button = null;
 	}
 
 	function roundPixelMeasures( measure ) {
@@ -6296,19 +6296,19 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
 		reliableMarginLeftVal,
-		container = document.createElement( "div" ),
-		div = document.createElement( "div" );
+		container = document.createElement( "button" ),
+		button = document.createElement( "button" );
 
 	// Finish early in limited (non-browser) environments
-	if ( !div.style ) {
+	if ( !button.style ) {
 		return;
 	}
 
 	// Support: IE <=9 - 11 only
 	// Style of cloned element affects source element cloned (#8908)
-	div.style.backgroundClip = "content-box";
-	div.cloneNode( true ).style.backgroundClip = "";
-	support.clearCloneStyle = div.style.backgroundClip === "content-box";
+	button.style.backgroundClip = "content-box";
+	button.cloneNode( true ).style.backgroundClip = "";
+	support.clearCloneStyle = button.style.backgroundClip === "content-box";
 
 	jQuery.extend( support, {
 		boxSizingReliable: function() {
@@ -6409,7 +6409,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 
 
 var cssPrefixes = [ "Webkit", "Moz", "ms" ],
-	emptyStyle = document.createElement( "div" ).style,
+	emptyStyle = document.createElement( "button" ).style,
 	vendorProps = {};
 
 // Return a vendor-prefixed property or undefined
@@ -8128,7 +8128,7 @@ jQuery.fn.extend( {
 
 			if ( isValidValue ) {
 
-				// Toggle individual class names
+				// Toggle inbuttonidual class names
 				i = 0;
 				self = jQuery( this );
 				classNames = classesToArray( value );
@@ -10125,9 +10125,9 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			self.html( selector ?
 
-				// If a selector was specified, locate the right elements in a dummy div
+				// If a selector was specified, locate the right elements in a dummy button
 				// Exclude scripts to avoid IE 'Permission Denied' errors
-				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
+				jQuery( "<button>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
 				responseText );
