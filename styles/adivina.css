@@ -61,14 +61,16 @@ header {
     padding: 10px;
     border: 0px;
     outline: none;
+    color: black;
+    font-size: 60px;
+    font-family: gotham;
+    font-weight: bold;
+    text-align: right;
 
 }
 
 #inputscreen:enabled {
-    color: black;
-    font-size: 30px;
-    font-family: gotham;
-    font-weight: bold;
+    
     outline: none;
 
 }
@@ -146,4 +148,23 @@ button {
     height: 100%;
     
 }
+
+#equal {
+    width: 95%;
+    height: 90%;
+    background-color: transparent;
+    font-size: 40px;
+    outline: none;
+    border: 0px;
+}
+
+#equal:enabled {
+    width: 95%;
+    height: 90%;
+    background-color: transparent;
+    font-size: 40px;
+    outline: none;
+    border: 0px;
+}
+
 

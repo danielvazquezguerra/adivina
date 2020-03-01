@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="./styles/jquery-ui.structure.css">
     <link rel="stylesheet" href="./styles/adivina.css">    
     
-    
+    <!---scripts-
     <script src="./scripts/jquery-3.4.1.js"></script>
-    <script src="./scripts/jquery-ui.js"></script>
+    <script src="./scripts/jquery-ui.js"></script>-->
     
 
     <title>Adivina con Drag and Drop.</title>
@@ -22,17 +22,24 @@
 </head>
 <body>
 
+<!--todo--------------------------->
     <main class="wrapper">
 
+    <!--encabezado----->
+    
         <header>
             <h1 class="name">the<br> calcu-<br>delator.</h1>
         </header>
+    
+    <!---pantalla de la calculadora---->
 
         <section class="screen">
             <input type="text" id="inputscreen" maxlength="8">
 
 
         </section>
+
+    <!---teclado---->
 
         <section class="container">
 
@@ -55,9 +62,12 @@
 
         </section>
 
+    <!---boton para ejecutar la operacion----->
         <section class="down">
             <div id="down-left"></div>
-            <div id="down-right"></div>
+            <div id="down-right">
+                <input id="equal" type="submit" value="=">
+            </div>
         </section>
 
 
