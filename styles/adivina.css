@@ -1,4 +1,10 @@
 
+@font-face {
+    font-family: theboldfont;
+    src: url(.\fonts\Gotham-Black.otf);
+  }
+
+
 * {
 
     margin: 0;
@@ -64,7 +70,7 @@ header {
     justify-content: center;
     align-items: center;
     color: black;
-    font-family: 'gotham';
+    font-family: 'gotham black';
     font-size: 50px;
     font-size: 2em;
     width: 100%;
@@ -76,7 +82,8 @@ header {
 .name {
 
     color: black;
-    font-family: helvetica;
+    font-family: 'helvetica';
+    font-weight: bolder;
     font-size: 50px;
     line-height: 40px;
     padding: 8%;

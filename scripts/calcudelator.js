@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
+    console.log('jQuery activado');
 
-    console.log('hola');
+    $('.number').selectable();
 
 
 });
