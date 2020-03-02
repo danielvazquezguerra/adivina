@@ -20,4 +20,16 @@ function pulsar(valor) {
 }
 
 
+let boton = document.querySelector('#down-left');
+
+console.log(boton);
+
+boton.addEventListener('onmouseover',(e)=>{
+
+    console.log(e);
+
+});
+
+
+
 
