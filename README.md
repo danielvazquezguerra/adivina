@@ -1,4 +1,4 @@
-# Calculadora Hackeada.
+# Calculadora Hackeada. 💀
     	
  En este proyecto quiero emplear el JavaScript creando una calculadora capaz de realizar operaciones básicas como:
 						
@@ -10,7 +10,7 @@
  
  Pero con la capacidad de tener una operación de DragAndDrop que cambie el modo a *HACKEADA.*
 
-**TECNOLOGÍAS A UTILIZAR.**
+**TECNOLOGÍAS A UTILIZAR.**  💻
 
 	 1. HTML + API HTML5.
 	 2. CSS3
@@ -19,7 +19,7 @@
 	 5. JavaScript
 	 6. Git
 
-**REQUISITOS PARA ESTE PROYECTO.** 
+**REQUISITOS PARA ESTE PROYECTO.**  ✅ 
 
 		
 
