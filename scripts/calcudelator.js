@@ -1,13 +1,16 @@
 
 console.log("hola");
 
+// valores para reflejarlos en pantalla. 
 let numero = 0;
 
 let input = '';
 
+let preInput = document.querySelector('#pre-input');
 
+//funcion para los numeros en el teclado y tomar su valor.
 
-function pulsar(valor) {
+function Pulsar(valor) {
 
     console.log('haz pulsado el boton ' + valor);
 
@@ -15,20 +18,21 @@ function pulsar(valor) {
 
     input = input + valor;
 
-    document.getElementById('inputscreen').value = input;
+    document.querySelector('#inputscreen').value = input;
+
     
 }
 
 
-let boton = document.querySelector('#down-left');
 
-console.log(boton);
+document.querySelector('#sumar').addEventListener('click', ()=>{
 
-boton.addEventListener('onmouseover',(e)=>{
+    console.log(input);
 
-    console.log(e);
+    preInput.value = (`${input}+`);
 
 });
+
 
 
 

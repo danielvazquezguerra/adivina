@@ -49,6 +49,7 @@
                         <!---pantalla de la calculadora---->
 
                             <section class="screen">
+                                <input type="text" id="pre-input" maxlength="13">
                                 <input type="text" id="inputscreen" maxlength="7">
                             </section>
                 </section>
@@ -58,23 +59,23 @@
                     <!---teclado---->
 
                             <section class="container">
-
-                                <button class="number" onclick="pulsar(1)">1</button>
-                                <button class="number" onclick="pulsar(2)">2</button>
-                                <button class="number" onclick="pulsar(3)">3</button>
-                                <button class="number" onclick="pulsar('+')">+</button>
-                                <button class="number" onclick="pulsar(4)">4</button>
-                                <button class="number" onclick="pulsar(5)">5</button>
-                                <button class="number" onclick="pulsar(6)">6</button>
-                                <button class="number" onclick="pulsar('-')">-</button>
-                                <button class="number" onclick="pulsar(7)">7</button>
-                                <button class="number" onclick="pulsar(8)">8</button>
-                                <button class="number" onclick="pulsar(9)">9</button>
-                                <button class="number" onclick="pulsar('*')">X</button>
-                                <button class="number" onclick="pulsar('c')">C</button>
-                                <button class="number" onclick="pulsar(0)">0</button>
-                                <button class="number" onclick="pulsar('m')">M</button>
-                                <button class="number" onclick="pulsar('/')">/</button>
+                                
+                                <button class="number" onclick="Pulsar(1)">1</button>
+                                <button class="number" onclick="Pulsar(2)">2</button>
+                                <button class="number" onclick="Pulsar(3)">3</button>
+                                <button id="sumar" class="number">+</button>
+                                <button class="number" onclick="Pulsar(4)">4</button>
+                                <button class="number" onclick="Pulsar(5)">5</button>
+                                <button class="number" onclick="Pulsar(6)">6</button>
+                                <button class="number" onclick="Pulsar('-')">-</button>
+                                <button class="number" onclick="Pulsar(7)">7</button>
+                                <button class="number" onclick="Pulsar(8)">8</button>
+                                <button class="number" onclick="Pulsar(9)">9</button>
+                                <button class="number" onclick="Pulsar('x')">x</button>
+                                <button class="number" onclick="Pulsar('c')">c</button>
+                                <button class="number" onclick="Pulsar(0)">0</button>
+                                <button class="number" onclick="Pulsar('H')">H</button>
+                                <button class="number" onclick="Pulsar('/')">/</button>
 
                             </section>
                             
