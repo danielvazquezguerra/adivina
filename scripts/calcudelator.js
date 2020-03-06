@@ -6,7 +6,7 @@ let numero = "0";
 
 let input = '';
 
-let arrInput = [0];
+let arrInput = [];
 
 //funcion para los numeros en el teclado y tomar su valor.
 
@@ -29,8 +29,10 @@ document.querySelector('#sumar').addEventListener('click', ()=>{
 
     arrInput.push(input,'+');
     console.log(arrInput);
+    document.querySelector('#pre-input').value = arrInput.join('');
     input = '';
     document.querySelector('#inputscreen').value = '0';
+    
 
 });
 
