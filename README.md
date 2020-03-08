@@ -1,14 +1,11 @@
-# Calculadora Hackeada. 💀
+# Calculadora Pirata. 💀
     	
  En este proyecto quiero emplear el JavaScript creando una calculadora capaz de realizar operaciones básicas como:
 						
-
  1. Suma
  2. Resta
  3. Multiplicación
  4. División
- 
- Pero con la capacidad de tener una operación de DragAndDrop que cambie el modo a *HACKEADA.*
 
 **TECNOLOGÍAS A UTILIZAR.**  💻
 
