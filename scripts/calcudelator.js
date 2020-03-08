@@ -46,6 +46,24 @@ document.querySelector('#sumar').addEventListener('click', ()=>{
     
 });
 
+document.querySelector('#restar').addEventListener('click', ()=>{
+
+    
+    arrCalculo.push(parseFloat(input));
+    input = parseFloat(input);
+    resultado = resultado - input;
+    console.log(resultado);
+    console.log(arrCalculo);
+    arrInput.push(input,'-');
+    console.log(arrInput);
+    document.querySelector('#pre-input').value = arrInput.join('');
+    input = '';
+    document.querySelector('#inputscreen').value = '0';
+    
+    
+});
+
+
 document.querySelector('#dividir').addEventListener('click', ()=>{
 
     
