@@ -8,6 +8,10 @@ let input = '';
 
 let arrInput = [];
 
+let arrCalculo = [];
+
+let resultado = 0;
+
 //funcion para los numeros en el teclado y tomar su valor.
 
 function Pulsar(valor) {
@@ -27,16 +31,51 @@ function Pulsar(valor) {
 
 document.querySelector('#sumar').addEventListener('click', ()=>{
 
-    arrInput.push(input,'+');
+    
+    arrCalculo.push(parseFloat(input));
+    input = parseFloat(input);
+    resultado = resultado + input;
+    console.log(resultado);
+    console.log(arrCalculo);
+    arrInput.push('+',input);
     console.log(arrInput);
     document.querySelector('#pre-input').value = arrInput.join('');
     input = '';
     document.querySelector('#inputscreen').value = '0';
     
+    
+});
+
+document.querySelector('#dividir').addEventListener('click', ()=>{
+
+    
+    arrCalculo.push(parseFloat(input));
+    input = parseFloat(input);
+    resultado = resultado + input;
+    console.log(resultado);
+    console.log(arrCalculo);
+    arrInput.push('/',input);
+    console.log(arrInput);
+    document.querySelector('#pre-input').value = arrInput.join('');
+    input = '';
+    document.querySelector('#inputscreen').value = '0';
+    
+    
+});
+
+
+document.querySelector('#equal').addEventListener('click', ()=>{
+
+    console.log('haz pulsado igual.')
+    arrInput = arrInput.join('');
+    console.log(arrInput);
+    console.log(resultado);
+    document.querySelector('#inputscreen').value = resultado;
 
 });
 
 
-
-
-
+document.querySelector('#clear').addEventListener('click', ()=>{
+    input = '';
+    arrInput = [];
+});

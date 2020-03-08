@@ -50,7 +50,7 @@
 
                             <section class="screen">
                                 <input type="text" id="pre-input" maxlength="13">
-                                <input type="text" id="inputscreen" maxlength="7">
+                                <input id="inputscreen" type="text"></input>
                             </section>
                 </section>
 
@@ -71,12 +71,13 @@
                                 <button class="number" onclick="Pulsar(7)">7</button>
                                 <button class="number" onclick="Pulsar(8)">8</button>
                                 <button class="number" onclick="Pulsar(9)">9</button>
-                                <button class="number" onclick="Pulsar('x')">x</button>
-                                <button class="number" onclick="Pulsar('c')">c</button>
+                                <button class="number" onclick="Pulsar('*')">x</button>
+                                <button class="number" id="clear">c</button>
                                 <button class="number" onclick="Pulsar(0)">0</button>
-                                <button class="number" onclick="Pulsar('H')">H</button>
-                                <button class="number" onclick="Pulsar('/')">/</button>
+                                <button class="number" onclick="Pulsar('.')">.</button>
+                                <button id="dividir" class="number" onclick="Pulsar('/')">/</button>
 
+                                
                             </section>
                             
                             <section class="down">
@@ -99,7 +100,7 @@
         </section>
 
     
-
+        
     </main>
     <script src="./scripts/calcudelator.js"></script>
 </body>

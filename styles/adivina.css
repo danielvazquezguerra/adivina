@@ -44,8 +44,15 @@
         animation:0.5s ease-in-out;
         animation-delay: 0.3seg;
         overflow: hidden;
+        z-index: 1;
+        mix-blend-mode: soft-light;
+
 
     }
+
+    
+
+   
     /*bloque superior_____________________>*/
 
     /*titulo*/
@@ -163,6 +170,7 @@
         box-sizing: border-box;
         width: 95%;
         height: 70%;
+        z-index: 3;
 
     }
     /*botones*/
@@ -297,14 +305,13 @@
         align-items: center;
         width: 67%;
         height: 100%;
-        overflow: hidden;
     }
 
     .article-extra {
         width: 90%;
         height: 90%;
         border: 10px solid black;
-        overflow: hidden;
+
     }
 
     .wrapper-up {
@@ -326,11 +333,11 @@
 
     .barco {
 
-        width: 90%;
+        width: 700px;
         position: relative;
         bottom: -50px;
-        left: 10px;
-        mix-blend-mode: multiply;
+        right: 50px;
+        mix-blend-mode: normal;
         z-index: 1;
 
 
