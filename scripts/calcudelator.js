@@ -89,6 +89,7 @@ document.querySelector('#equal').addEventListener('click', ()=>{
     console.log(arrInput);
     console.log(resultado);
     document.querySelector('#inputscreen').value = resultado;
+    localStorage.setItem(JSON.stringify(arrInput),JSON.stringify(resultado));
 
 });
 
