@@ -1,16 +1,19 @@
 console.log('hola');
 
+let input = document.querySelector('#inputscreen').value;
 
-let input = document.querySelector('#inputscreen').innerHTML;
+let Pulsar = (num)=>{
+    console.log(num);
+    input = String(input + num);
+    console.log(input);
+    document.querySelector('#inputscreen').value = input;
+
+};
 
 
-function Pulsar(ev) {
+document.querySelector('#equal').addEventListener('click', ()=>{
 
-    let x = document.createEvent('KeyboardEvent').key;
-    console.log(x); 
-    
-}
+    let resultado = eval(document.querySelector('#inputscreen').value);
+    document.querySelector('#inputscreen').value = resultado;
 
-document.addEventListener('keypress',(event)=>{
-    console.log(event.charCode);
 });
