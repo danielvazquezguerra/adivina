@@ -1,4 +1,5 @@
 console.log('hola');
+document.querySelector('#inputscreen').focus();
 
 let arrInput = [];
 
@@ -14,7 +15,7 @@ let Pulsar = (num)=>{
 };
 
 document.querySelector('#sumar').addEventListener('click',()=> {
-    arrInput.push(input,'+');
+    arrInput.push(document.querySelector('#inputscreen').value);
     console.log(arrInput);
 });
 
