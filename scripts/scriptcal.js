@@ -1,8 +1,11 @@
 console.log('hola');
 
-let input = document.querySelector('#inputscreen').value;
+let arrInput = [];
+
 
 let Pulsar = (num)=>{
+
+    let input = document.querySelector('#inputscreen').value;
     console.log(num);
     input = String(input + num);
     console.log(input);
@@ -10,10 +13,17 @@ let Pulsar = (num)=>{
 
 };
 
+document.querySelector('#sumar').addEventListener('click',()=> {
+    arrInput.push(input,'+');
+    console.log(arrInput);
+});
+
 
 document.querySelector('#equal').addEventListener('click', ()=>{
 
     let resultado = eval(document.querySelector('#inputscreen').value);
+    resultado = resultado.toFixed(2);
+    resultado = parseFloat(resultado);
     document.querySelector('#inputscreen').value = resultado;
 
 });
